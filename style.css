@@ -1,0 +1,230 @@
+/* =====================================
+   9 de octubre — Flores moradas
+   ===================================== */
+
+:root {
+  --purple-dark: #3e0f56;
+  --purple-medium: #6b2d8e;
+  --purple-light: #b57edc;
+  --white-soft: #f7f0ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { min-height: 100%; }
+
+body {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .16), transparent 35%),
+    linear-gradient(135deg, var(--purple-dark), var(--purple-medium), var(--purple-light));
+}
+
+/* Luces difuminadas en el fondo */
+.glow {
+  position: fixed;
+  z-index: 0;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.2), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+.glow-one { top: -170px; left: -150px; }
+.glow-two { right: -150px; bottom: -180px; animation-delay: 2s; }
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: .7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Contenido central */
+.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 35px 18px;
+}
+
+.card {
+  width: min(100%, 920px);
+  padding: 35px 32px 28px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, .12);
+  box-shadow: 0 24px 70px rgba(25, 4, 45, .27);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  animation: fadeUp 1.35s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.date {
+  margin-bottom: 8px;
+  color: #f3dcff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: .8; }
+  50% { opacity: 1; }
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3.25rem, 9vw, 6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  text-shadow: 0 0 18px rgba(255,255,255,.35);
+  animation: floatTitle 4s ease-in-out infinite;
+}
+
+@keyframes floatTitle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.subtitle, .message {
+  max-width: 690px;
+  margin-inline: auto;
+  color: var(--white-soft);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.subtitle { margin-top: 7px; }
+
+.teamo {
+  margin: 10px 0 2px;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3.8rem, 10vw, 6.4rem);
+  line-height: 1.25;
+  text-shadow: 0 0 12px rgba(255,255,255,.3),
+               0 0 34px rgba(218,170,255,.65);
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.035); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.055); }
+}
+
+.message { max-width: 740px; }
+
+/* Claveles bicolor en SVG: los crea script.js */
+.flowers {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(5px, 2vw, 23px);
+  min-height: 230px;
+  margin: 8px auto 0;
+}
+
+.flower {
+  width: clamp(100px, 18vw, 152px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 9px 8px rgba(23, 4, 36, .22));
+  transform-origin: 50% 100%;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.flower:nth-child(1) { animation-delay: 0s; }
+.flower:nth-child(2) { width: clamp(117px, 20vw, 172px); animation-delay: .7s; }
+.flower:nth-child(3) { animation-delay: 1.4s; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(-7px); }
+}
+
+.signature {
+  margin-top: 5px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.1rem;
+  line-height: 1.35;
+  color: #fff4ff;
+}
+
+/* Pétalos cayendo y estrellas */
+.petals, .sparkles {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+  top: -38px;
+  width: 18px;
+  height: 20px;
+  border-radius: 65% 25% 70% 30%;
+  background: radial-gradient(circle at 27% 28%, #fff 0%, #f4e8ff 30%, #bb74e6 72%, #7e2caf 100%);
+  opacity: .75;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: .8; }
+  90% { opacity: .8; }
+  100% { transform: translate3d(70px, 110vh, 0) rotate(380deg); opacity: 0; }
+}
+
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 12px white, 0 0 20px #e0baff;
+  animation: twinkle 2.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: .1; transform: scale(.7); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* En celulares se adapta y se permite desplazamiento vertical */
+@media (max-width: 600px) {
+  .container { padding: 18px 12px; }
+  .card { padding: 26px 15px 22px; border-radius: 24px; }
+  .date { font-size: .82rem; }
+  .subtitle, .message { font-size: .91rem; line-height: 1.7; }
+  .flowers { min-height: 180px; }
+}
+
+/* Respeta la preferencia de menos animaciones */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
